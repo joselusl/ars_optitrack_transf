@@ -3,8 +3,6 @@ project(ars_optitrack_transf)
 
 find_package(catkin REQUIRED COMPONENTS
   rospy
-  message_generation
-
   # - Messages
   std_msgs
   geometry_msgs
