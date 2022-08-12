@@ -9,7 +9,6 @@ import yaml
 import rospy
 import rospkg
 
-import tf_conversions
 import tf2_ros
 
 import visualization_msgs.msg
