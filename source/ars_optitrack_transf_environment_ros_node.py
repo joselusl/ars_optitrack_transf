@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 
 
 from ars_optitrack_transf_environment_ros import *
