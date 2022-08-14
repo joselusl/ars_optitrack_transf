@@ -4,7 +4,9 @@ from numpy import *
 
 import os
 
+# pyyaml - https://pyyaml.org/wiki/PyYAMLDocumentation
 import yaml
+from yaml.loader import SafeLoader
 
 import rospy
 import rospkg
@@ -75,7 +77,7 @@ class ArsOptitrackTransfEnvironmentRos:
         with open(self.optitrack_transf_environment_descript_yaml_file_name,'r') as file:
             # The FullLoader parameter handles the conversion from YAML
             # scalar values to Python the dictionary format
-            self.optitrack_transf_environment_descript = yaml.load(file)
+            self.optitrack_transf_environment_descript = yaml.load(file, Loader=SafeLoader)
         print(self.optitrack_transf_environment_descript)
 
         #
