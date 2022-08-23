@@ -197,7 +197,7 @@ class ArsOptitrackTransfRobotRos:
 
     # Get tf
     try:
-      robot_pose_tf = self.tf2_buffer.lookup_transform(self.meas_robot_frame, self.meas_world_frame, time_stamp_current)
+      robot_pose_tf = self.tf2_buffer.lookup_transform(self.meas_world_frame, self.meas_robot_frame, time_stamp_current, rospy.Duration(0.1))
     except (tf2_ros.LookupException, tf2_ros.ConnectivityException, tf2_ros.ExtrapolationException):
       print("Error receiving TF")
       return
@@ -223,10 +223,10 @@ class ArsOptitrackTransfRobotRos:
 
 
     # Set meas: Position
-    self.robot_state_estimator.setMeasRobotPosition(timestamp, robot_posi)
+    self.robot_state_estimator.setMeasRobotPosition(time_stamp_current, robot_posi)
 
     # Set meas: Attitude quat simp
-    self.robot_state_estimator.setMeasRobotAttitude(timestamp, robot_atti_quat_simp)
+    self.robot_state_estimator.setMeasRobotAttitude(time_stamp_current, robot_atti_quat_simp)
 
 
     # End

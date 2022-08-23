@@ -42,7 +42,7 @@ class ArsOptitrackTransfEnvironmentRos:
 
 
     # Timers
-    pub_timer_freq = 100.
+    pub_timer_freq = 10.0
     pub_timer = None
 
 
@@ -138,7 +138,7 @@ class ArsOptitrackTransfEnvironmentRos:
                     obstacle_i.header.stamp = rospy.Time().now()
                     obstacle_i.header.frame_id = self.world_frame_name
 
-                    obstacle_i.ns = obstacles_label
+                    obstacle_i.ns = self.obstacles_label
                     obstacle_i.id = circle['id']
 
                     obstacle_i.action = 0
@@ -163,7 +163,7 @@ class ArsOptitrackTransfEnvironmentRos:
                     obstacle_i.color.b = 0.0
                     obstacle_i.color.a = 0.3
 
-                    obstacle_i.lifetime = rospy.Duration(self.pub_timer_interval)
+                    obstacle_i.lifetime = rospy.Duration(5.0*1.0/self.pub_timer_freq)
 
                     self.obstacles_msg.markers.append(obstacle_i)
 
@@ -176,7 +176,7 @@ class ArsOptitrackTransfEnvironmentRos:
     def read_tf_data(self, parent, child, time):
         try:
             return self.tf2_buffer.lookup_transform(
-                self.world_frame_name, child, time
+                self.world_frame_name, child, time, rospy.Duration(0.1)
             ).transform
         except tf2_ros.LookupException:
             return None
