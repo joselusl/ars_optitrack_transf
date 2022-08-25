@@ -73,10 +73,6 @@ class ArsOptitrackTransfRobot:
   # Covariance meas attitude
   cov_meas_atti = None
 
-  # Covariance meas velocity
-  cov_meas_velo_lin = None
-  cov_meas_velo_ang = None
-
 
 
   #########
@@ -117,14 +113,10 @@ class ArsOptitrackTransfRobot:
                                     0.1])
 
     # Covariance meas position
-    self.cov_meas_posi = np.diag([0.05, 0.05, 0.05])
+    self.cov_meas_posi = np.diag([0.001, 0.001, 0.001])
 
     # Covariance meas attitude
-    self.cov_meas_atti = np.diag([0.05])
-
-    # Covariance meas velocity
-    self.cov_meas_velo_lin = np.diag([0.01, 0.01, 0.01])
-    self.cov_meas_velo_ang = np.diag([0.01])
+    self.cov_meas_atti = np.diag([0.001])
 
 
     # End
